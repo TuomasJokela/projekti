@@ -6,7 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const radius = canvas.width / 2;
     let spinAngleStart = 10;
     let startAngle = 0;
+    let spinSpeed = 1; // Initial spin speed
     const arc = Math.PI * 2 / options.length;
+    let spinningSoundPlaying = false;
+    let spinningSoundInterval;
+
+    // Sound effects
+    const spinSound = new Audio('spinsound.mp3');
+    const resultSound = new Audio('winner.mp3');
+    const spinningSound = new Audio('start.mp3');
 
     // Piirrä nuoli
     function drawArrow() {
@@ -44,38 +52,80 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function spin() {
-        const minSpinTime = 3000; // Minimipyöritysaika
-        const maxSpinTime = 6000; // Maksimipyöritysaika
-
-        spinAngleStart = Math.random() * 10 + 10; // Asetetaan satunnainen pyörimiskulma
-        const spinTimeTotal = Math.random() * (maxSpinTime - minSpinTime) + minSpinTime; // Asetetaan satunnainen pyörimisaika
-
+        const minSpinTime = 3000; // Minimum spin time
+        const maxSpinTime = 6000; // Maximum spin time
+        const initialSpinSpeed = 1; // Initial spin speed
+        const minPlaybackRate = 0.5; // Minimum playback rate for spinning sound
+        const spinSoundThreshold = 0.1; // Angle threshold for playing spin sound
+        const optionAngles = options.map((_, index) => (index + 0.5) * (360 / options.length)); // Calculate the angle for each option
+    
+        spinAngleStart = Math.random() * 10 + 10; // Randomize the spin angle
+        const spinTimeTotal = Math.random() * (maxSpinTime - minSpinTime) + minSpinTime; // Randomize the spin time
+    
         function rotateWheel() {
             const spinAngle = spinAngleStart - easeOut((Date.now() - spinTimeStart), 0, spinAngleStart, spinTimeTotal);
-            startAngle += (spinAngle * Math.PI / 180);
+            const adjustedSpinAngle = spinAngle * Math.PI / 180 * spinSpeed; // Adjusted spin angle considering spin speed
+            startAngle += adjustedSpinAngle;
             drawWheel();
+    
+            // Calculate the current angle
+            const degrees = startAngle * 180 / Math.PI + 90;
+    
             if ((Date.now() - spinTimeStart) < spinTimeTotal) {
                 requestAnimationFrame(rotateWheel);
+    
+                // Play spinning sound continuously while spinning
+                if (!spinningSoundPlaying) {
+                    setTimeout(() => {
+                        spinningSound.play();
+                    }, 1); // Introduce a delay before playing spinning sound
+                    spinningSoundPlaying = true;
+                }
+    
+                // Adjust the playback rate of the spinning sound based on remaining spin time
+                const remainingSpinTime = spinTimeTotal - (Date.now() - spinTimeStart);
+                const playbackRate = initialSpinSpeed + (spinSpeed - initialSpinSpeed) * (remainingSpinTime / spinTimeTotal);
+                spinningSound.playbackRate = Math.max(playbackRate, minPlaybackRate);
+    
+                // Play spinning sound briefly when the wheel pointer crosses option angles
+                optionAngles.forEach((angle) => {
+                    const angleDiff = Math.abs(degrees - angle);
+                    if (angleDiff <= spinSoundThreshold * 360 && spinSound.paused) {
+                        spinSound.currentTime = 0;
+                        spinSound.play();
+                    }
+                });
             } else {
-                const degrees = startAngle * 180 / Math.PI + 90;
-                const arcd = arc * 180 / Math.PI;
-                const index = Math.floor((360 - degrees % 360) / arcd);
-                const winnerText = `Voittaja on: ${options[index]}`;
-                console.log(winnerText);
-                alert(winnerText); // Voittavan kohteen teksti
+                resultSound.play(); // Play result sound
+                spinningSound.pause(); // Pause spinning sound when spinning stops
+                spinningSoundPlaying = false;
+                clearInterval(spinningSoundInterval); // Stop continuous spinning sound
+    
+                // Delay showing the pop-up for a short amount of time
+                setTimeout(function() {
+                    const index = Math.floor((360 - degrees % 360) / (360 / options.length));
+                    const winnerText = `Voittaja on: ${options[index]}`;
+                    console.log(winnerText);
+                    alert(winnerText); // Alert the winner
+                }, 600); // Adjust the delay time as needed
             }
         }
-
+    
         const spinTimeStart = Date.now();
         rotateWheel();
     }
-
+    
     function easeOut(t, b, c, d) {
         const ts = (t /= d) * t;
         const tc = ts * t;
         return b + c * (tc + -3 * ts + 3 * t);
     }
 
+    // Event listener for speed range change
+    document.getElementById('speedRange').addEventListener('input', function() {
+        spinSpeed = parseInt(this.value);
+    });
+    
     document.getElementById('spin').addEventListener('click', spin);
     
     // Lisää uusi vaihtoehto
