@@ -1,11 +1,19 @@
-body {
+body, html {
+    height: 100%;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    flex-direction: column;
+}
+
+.wrapper {
+    text-align: center;
 }
 
 .wheel-container {
     margin-bottom: 20px;
+}
+
+.button-container {
+    margin-top: 20px;
 }
