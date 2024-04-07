@@ -6,16 +6,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wheel-container">
-        <canvas id="wheel" width="500" height="500"></canvas>
+    <div class="wrapper">
+        <div class="wheel-container">
+            <canvas id="wheel" width="500" height="500"></canvas>
+        </div>
+        <div class="button-container">
+            <button id="spin">Pyöritä Onnenpyörää!</button>
+            <input id="speedRange" type="range" min="1" max="10" value="1">
+            <input type="text" id="newOption" placeholder="Lisää uusi vaihtoehto" />
+            <button id="addOptionBtn">Lisää</button>
+            <button id="removeAllOptionsBtn">Poista kaikki vaihtoehdot</button>
+        </div>
+        <div id="optionsList"></div>
     </div>
-    <button id="spin">Pyöritä Onnenpyörää!</button>
-    <div id="optionsForm">
-        <input type="text" id="newOption" placeholder="Lisää uusi vaihtoehto" />
-        <button id="addOptionBtn">Lisää</button>
-        <button id="removeAllOptionsBtn">Poista kaikki vaihtoehdot</button> <!-- Lisätty poistonappi -->
-    </div>
-    <div id="optionsList"></div>
     <script src="script.js"></script>
 </body>
 </html>
