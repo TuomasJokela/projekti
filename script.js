@@ -1,4 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const templates = {
+        esimerkki1: { options: ['Kanapasta', 'Makaronilaatikko', 'Mozzarellavuoka', 'Hernekeitto', 'Muusi ja makkara'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] },
+        esimerkki2: { options: ['Volvo', 'Nissan','Lada','Kia', 'Toyota'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] },
+        esimerkki3: { options: ['Thaimaa', 'Kreikka', 'Turkki', 'Espanja', 'Italia'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] },
+        esimerkki4: { options: ['Hesburger', 'BurgerKing', 'Kotipizza', 'McDonalds', 'KFC'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] },
+        esimerkki5: { options: ['Milla', 'Kerttu', 'Elli', 'Olivia', 'Aino'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] },
+        esimerkki6: { options: ['Pertti', 'Eevertti', 'Keijo', 'Yrjö', 'Roni'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] },
+        esimerkki7: { options: ['Kissa', 'Koira', 'Kilpikonna', 'Undulaatti', 'Hiiri'], 
+        colors: ['#FF0000', '#00FF00', '#ADD8E6', '#FFFF00', '#FF00FF'] }
+    };
     const canvas = document.getElementById('wheel');
     const ctx = canvas.getContext('2d');
     const options = ['Vaihtoehto 1', 'Vaihtoehto 2', 'Vaihtoehto 3', 'Vaihtoehto 4', 'Vaihtoehto 5'];
@@ -10,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const arc = Math.PI * 2 / options.length;
     let spinningSoundPlaying = false;
     let spinningSoundInterval;
+
+
 
     // Äänitehosteet
     const spinSound = new Audio('spinsound.mp3');
@@ -146,6 +164,19 @@ document.addEventListener('DOMContentLoaded', function() {
         colors.length = 0; // Tyhjennä värien taulukko
         drawWheel(); // Piirrä pyörä ilman vaihtoehtoja
     });
+    document.getElementById('templates').addEventListener('change', function() {
+        const selectedTemplate = this.value;
+        if (templates[selectedTemplate]) {
+            options.length = 0;
+            colors.length = 0;
+            const template = templates[selectedTemplate];
+            options.push(...template.options);
+            colors.push(...template.colors);
+            drawWheel();
+        }
+    });
 
     drawWheel();
+    
+    
 });
