@@ -7,17 +7,40 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="wheel-container">
-            <canvas id="wheel" width="500" height="500"></canvas>
+        <div class="container">
+            <div class="wheel-container">
+                <canvas id="wheel" width="500" height="500"></canvas>
+            </div>
+            <div class="button-container">
+                <button id="spin">Pyöritä Onnenpyörää!</button>
+                <input id="speedRange" type="range" min="1" max="10" value="1">
+            </div>
         </div>
-        <div class="button-container">
-            <button id="spin">Pyöritä Onnenpyörää!</button>
-            <input id="speedRange" type="range" min="1" max="10" value="1">
+        
+        <div class="options-container">
             <input type="text" id="newOption" placeholder="Lisää uusi vaihtoehto" />
             <button id="addOptionBtn">Lisää</button>
             <button id="removeAllOptionsBtn">Poista kaikki vaihtoehdot</button>
+            <div id="optionsList"></div>
         </div>
-        <div id="optionsList"></div>
+
+        <button id="menuButton">Valikko</button>
+        <div class="menuContent">
+            <ul>
+                <li><a href="#">Oma tili</a></li>
+                <li><a href="#">Valitse teema</a></li>
+                <li><a href="#">Valmiit arpakoneet</a></li>
+                <li><a href="#">Tee oma arpakone</a></li>
+                <li><a href="#">Arpakone historia</a></li>
+            </ul>
+        </div>
+
+        <button id="toggleSoundButton" class="left-bottom">Musiikki Päälle</button>
+        <audio id="backgroundMusic" loop>
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="authorsButton" class="right-bottom">Tekijät</button>
     </div>
     <script src="script.js"></script>
 </body>
