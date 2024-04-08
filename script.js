@@ -148,5 +148,12 @@ document.addEventListener('DOMContentLoaded', function() {
         drawWheel(); // Piirrä pyörä ilman vaihtoehtoja
     });
 
+    // Napin toiminta valikon näyttämiseen/piilottamiseen
+    const menuButton = document.getElementById('menuButton');
+    const menuContent = document.querySelector('.menuContent');
+    menuButton.addEventListener('click', function() {
+        menuContent.classList.toggle('show');
+    });
+
     drawWheel();
 });
