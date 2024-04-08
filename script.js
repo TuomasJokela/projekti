@@ -1,4 +1,3 @@
-// Kuuntele sivun latausta
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('wheel');
     const ctx = canvas.getContext('2d');
