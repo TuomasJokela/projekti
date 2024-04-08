@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,17 @@
 </head>
 <body>
     <div class="wrapper">
+        <button id="menuButton">Valikko</button>
+        <div class="menuContent">
+            <ul>
+                <li><a href="#">Oma tili</a></li>
+                <li><a href="#">Valitse teema</a></li>
+                <li><a href="#">Valmiit arpakoneet</a></li>
+                <li><a href="#">Tee oma arpakone</a></li>
+                <li><a href="#">Arpakone historia</a></li>
+            </ul>
+        </div>
+        
         <div class="wheel-container">
             <canvas id="wheel" width="500" height="500"></canvas>
         </div>
@@ -18,6 +30,8 @@
             <button id="removeAllOptionsBtn">Poista kaikki vaihtoehdot</button>
         </div>
         <div id="optionsList"></div>
+
+        <button id="authorsButton" class="right-bottom">Tekijät</button>
     </div>
     <script src="script.js"></script>
 </body>
