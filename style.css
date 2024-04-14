@@ -1,20 +1,99 @@
-
 body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .wrapper {
-    text-align: center;
+  /* muut säädöt samana */
+  align-items: flex-start; /* vaihda center -> flex-start */
+}
+
+#soundIcon {
+    width: 50px;
+    height: auto;
+    margin-left: 10px; /* tai säädä arvoa haluamaksesi */
+  
+  
 }
 
 .wheel-container {
-    margin-bottom: 20px;
+  order: 1; /* aseta onnenpyörä ensimmäisenä */
+  /* Lisää pyörälle myös marginaalia, jos haluat tilaa elementtien välille */
+  margin-bottom: 20px; /* tai sopiva arvo */
 }
 
-.button-container {
-    margin-top: 20px;
+
+/* Ääniaaltojen animaatio */
+.volume-icon::before, .volume-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid black;
+  transform: scale(0) translate(0, -50%);
+  transition: all 0.2s ease-out;
+}
+
+.volume-icon::before {
+  animation: soundWave 2s infinite ease-out;
+}
+
+.volume-icon::after {
+  animation: soundWave 2s 1s infinite ease-out; /* 1s viive, jotta aallot liikkuvat vuorotellen */
+}
+
+@keyframes soundWave {
+  0%, 100% {
+    transform: scale(0) translate(0, -50%);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) translate(20px, -50%);
+    opacity: 0;
+  }
+}
+
+/* Ääniaaltojen piilottaminen */
+.sound-off .volume-icon::before, .sound-off .volume-icon::after {
+  display: none;
+}
+
+/* Vaihtoehtoja äänikuvakkeen sijainnille */
+.sound-icon-left {
+  /* Aseta äänikuvake painikkeen vasemmalle puolelle */
+  display: flex;
+  flex-direction: row; /* Aseta äänikuvake ja painike samalle riville */
+  align-items: center; /* Keskitä äänikuvake vertikaalisesti */
+}
+
+#soundIcon.sound-icon-left {
+  margin-left: 10px; /* Lisää vasen marginaali äänikuvakkeelle */
+}
+
+.sound-icon-right {
+  /* Aseta äänikuvake painikkeen oikealle puolelle */
+  display: flex;
+  flex-direction: row-reverse; /* Aseta äänikuvake ja painike samalle riville, äänikuvake oikealle */
+  align-items: center; /* Keskitä äänikuvake vertikaalisesti */
+}
+
+#soundIcon.sound-icon-right {
+  margin-right: 10px; /* Lisää oikea marginaali äänikuvakkeelle */
+}
+
+.sound-icon-below {
+  /* Aseta äänikuvake painikkeen alapuolelle */
+  display: flex;
+  flex-direction: column; /* Aseta äänikuvake ja painike päällekkäin */
+  align-items: center; /* Keskitä äänikuvake horisontaalisesti */
+}
+
+#soundIcon.sound-icon-below {
+  margin-top: 10px; /* Lisää ylämarginaali äänikuvakkeelle */
 }
