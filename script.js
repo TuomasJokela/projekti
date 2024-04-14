@@ -27,7 +27,32 @@ document.addEventListener('DOMContentLoaded', function() {
     let spinningSoundPlaying = false;
     let spinningSoundInterval;
 
+    // Äänikaiuttimen tilan hallinta
+    const soundToggleButton = document.getElementById('soundToggle');
+const soundIcon = document.getElementById('soundIcon'); // Oletetaan, että sinulla on <img id="soundIcon"> elementti
 
+soundToggleButton.addEventListener('click', function() {
+    // Tarkista, onko äänet tällä hetkellä päällä
+    if (soundToggleButton.classList.contains('sound-on')) {
+        soundToggleButton.classList.remove('sound-on');
+        soundToggleButton.classList.add('sound-off');
+        // Määritä äänitehosteet pois päältä
+        spinSound.muted = true;
+        resultSound.muted = true;
+        spinningSound.muted = true;
+        // Vaihda äänet pois päällä oleva kuvake
+        soundIcon.src = 'voiceoff.png';
+    } else {
+        soundToggleButton.classList.remove('sound-off');
+        soundToggleButton.classList.add('sound-on');
+        // Määritä äänitehosteet päälle
+        spinSound.muted = false;
+        resultSound.muted = false;
+        spinningSound.muted = false;
+        // Vaihda äänet päällä oleva kuvake
+        soundIcon.src = 'voiceon.png';
+    }
+});
 
     // Äänitehosteet
     const spinSound = new Audio('spinsound.mp3');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="UTF-8">
     <title>Onnenpyörä</title>
@@ -17,6 +17,7 @@
             <button id="addOptionBtn">Lisää</button>
             <button id="removeAllOptionsBtn">Poista kaikki vaihtoehdot</button>
         </div>
+        
         <div id="optionsList"></div>
         <div id="templateSelector">
             <label for="templates">Valitse valmiita arvontapohjia:</label>
@@ -30,6 +31,10 @@
                 <option value="esimerkki6">Poikalapselle nimeksi</option>
                 <option value="esimerkki7">Lemmikkieläin</option>
             </select>
+            <div><button id="soundToggle" class="sound-on">Äänet (päällä/pois)</button>
+                <img id="soundIcon" src="voiceon.png" alt="Äänet päällä">
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
