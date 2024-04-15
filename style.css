@@ -1,20 +1,46 @@
-
-body, html {
-    height: 100%;
-    margin: 0;
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.wrapper {
-    text-align: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 .wheel-container {
     margin-bottom: 20px;
 }
 
-.button-container {
-    margin-top: 20px;
+.modal {
+    display: none; /* Piilotettu oletuksena */
+    position: fixed; /* Kiinnitetty sivun reunaan */
+    z-index: 1; /* Aseta päällekkäisyyden taso */
+    left: 0;
+    top: 0;
+    width: 100%; /* Täysi leveys */
+    height: 100%; /* Täysi korkeus */
+    overflow: auto; /* Lisää vieritys, jos sisältö on liian suuri */
+    background-color: rgb(0,0,0); /* Musta tausta väri, läpinäkyvä */
+    background-color: rgba(0,0,0,0.4); /* Musta tausta väri, läpinäkyvä */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% sivun yläreunasta, keskitetty */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 80% leveys */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
