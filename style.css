@@ -1,99 +1,73 @@
 body, html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapper {
-  /* muut säädöt samana */
-  align-items: flex-start; /* vaihda center -> flex-start */
-}
-
-#soundIcon {
-    width: 50px;
-    height: auto;
-    margin-left: 10px; /* tai säädä arvoa haluamaksesi */
-  
-  
+    text-align: center;
 }
 
 .wheel-container {
-  order: 1; /* aseta onnenpyörä ensimmäisenä */
-  /* Lisää pyörälle myös marginaalia, jos haluat tilaa elementtien välille */
-  margin-bottom: 20px; /* tai sopiva arvo */
+    margin-bottom: 20px;
 }
 
-
-/* Ääniaaltojen animaatio */
-.volume-icon::before, .volume-icon::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid black;
-  transform: scale(0) translate(0, -50%);
-  transition: all 0.2s ease-out;
+.button-container {
+    margin-top: 20px;
 }
 
-.volume-icon::before {
-  animation: soundWave 2s infinite ease-out;
+/* Lisätään tyyli avatulle valikolle */
+.menuContent {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-.volume-icon::after {
-  animation: soundWave 2s 1s infinite ease-out; /* 1s viive, jotta aallot liikkuvat vuorotellen */
+.menuContent.show {
+    display: block;
+    margin-top: 50px; /* Lisätty ylimääräistä tilaa yläreunaan, jotta valikko ei peitä sisältöä */
 }
 
-@keyframes soundWave {
-  0%, 100% {
-    transform: scale(0) translate(0, -50%);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1) translate(20px, -50%);
-    opacity: 0;
-  }
+.menuContent ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-/* Ääniaaltojen piilottaminen */
-.sound-off .volume-icon::before, .sound-off .volume-icon::after {
-  display: none;
+.menuContent ul li a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: black;
 }
 
-/* Vaihtoehtoja äänikuvakkeen sijainnille */
-.sound-icon-left {
-  /* Aseta äänikuvake painikkeen vasemmalle puolelle */
-  display: flex;
-  flex-direction: row; /* Aseta äänikuvake ja painike samalle riville */
-  align-items: center; /* Keskitä äänikuvake vertikaalisesti */
+.menuContent ul li a:hover {
+    background-color: #ddd;
 }
 
-#soundIcon.sound-icon-left {
-  margin-left: 10px; /* Lisää vasen marginaali äänikuvakkeelle */
+/* tyyli tekijöiden napille */
+#authorsButton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
-.sound-icon-right {
-  /* Aseta äänikuvake painikkeen oikealle puolelle */
-  display: flex;
-  flex-direction: row-reverse; /* Aseta äänikuvake ja painike samalle riville, äänikuvake oikealle */
-  align-items: center; /* Keskitä äänikuvake vertikaalisesti */
+/* tyyli valikolle napille */
+#menuButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
-#soundIcon.sound-icon-right {
-  margin-right: 10px; /* Lisää oikea marginaali äänikuvakkeelle */
-}
-
-.sound-icon-below {
-  /* Aseta äänikuvake painikkeen alapuolelle */
-  display: flex;
-  flex-direction: column; /* Aseta äänikuvake ja painike päällekkäin */
-  align-items: center; /* Keskitä äänikuvake horisontaalisesti */
-}
-
-#soundIcon.sound-icon-below {
-  margin-top: 10px; /* Lisää ylämarginaali äänikuvakkeelle */
+/* tyyli äänien hallintanapille */
+#toggleSoundButton {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
