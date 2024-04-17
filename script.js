@@ -20,6 +20,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // Musiikki oletuksena pois päältä
     backgroundMusic.pause();
 
+    // Napin toiminta äänien käynnistämiseen/pysäyttämiseen
+    const soundIconContainer = document.getElementById('soundIconContainer');
+    const soundIcon = document.createElement('img');
+    soundIcon.src = 'voiceon.png';
+    soundIcon.alt = 'Äänet päällä';
+    soundIcon.style.width = '40px'; // Suurempi leveys
+    soundIcon.style.height = '40px'; // Suurempi korkeus
+    soundIconContainer.appendChild(soundIcon);
+
+    let isSoundOn = false; // Äänet oletuksena pois päältä
+    toggleSoundButton.addEventListener('click', function() {
+        if (isSoundOn) {
+            backgroundMusic.pause();
+            spinningSound.pause();
+            spinSound.pause();
+            isSoundOn = false;
+            soundIcon.src = 'voiceoff.png'; // Vaihdetaan kuvake äänet pois päältä -kuvakkeeksi
+            soundIcon.alt = 'Äänet pois päältä'; // Vaihdetaan alt-teksti
+            toggleSoundButton.textContent = 'Musiikki Päälle'; // Päivitetään painikkeen teksti
+        } else {
+            backgroundMusic.play();
+            isSoundOn = true;
+            soundIcon.src = 'voiceon.png'; // Vaihdetaan kuvake äänet päällä -kuvakkeeksi
+            soundIcon.alt = 'Äänet päällä'; // Vaihdetaan alt-teksti
+            toggleSoundButton.textContent = 'Musiikki Pois'; // Päivitetään painikkeen teksti
+        }
+    
+    });
+
     // Piirrä nuoli
     function drawArrow() {
         ctx.fillStyle = 'black';
@@ -126,22 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         spinSpeed = parseInt(this.value);
     });
 
-    // Napin toiminta äänien käynnistämiseen/pysäyttämiseen
-    const toggleSoundButton = document.getElementById('toggleSoundButton');
-    let isSoundOn = false; // Äänet oletuksena pois päältä
-    toggleSoundButton.addEventListener('click', function() {
-        if (isSoundOn) {
-            backgroundMusic.pause();
-            spinningSound.pause();
-            spinSound.pause();
-            isSoundOn = false;
-            toggleSoundButton.textContent = 'Musiikki Päälle';
-        } else {
-            backgroundMusic.play();
-            isSoundOn = true;
-            toggleSoundButton.textContent = 'Musiikki Pois';
-        }
-    });
+    
 
     document.getElementById('spin').addEventListener('click', spin);
 
