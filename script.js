@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Napin toiminta äänien käynnistämiseen/pysäyttämiseen
     const soundIconContainer = document.getElementById('soundIconContainer');
     const soundIcon = document.createElement('img');
-    soundIcon.src = 'voiceon.png';
+    soundIcon.src = 'voiceoff.png';
     soundIcon.alt = 'Äänet päällä';
     soundIcon.style.width = '40px'; // Suurempi leveys
     soundIcon.style.height = '40px'; // Suurempi korkeus
@@ -49,13 +49,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     });
 
-    // Piirrä nuoli
     function drawArrow() {
-        ctx.fillStyle = 'black';
+        // Piirrä nuolen reuna
+        ctx.strokeStyle = '#000000'; // Musta väri reunalle
+        ctx.lineWidth = 2; // Reunan leveys
+    
         ctx.beginPath();
-        ctx.moveTo(radius - 5, 20);
-        ctx.lineTo(radius + 5, 20);
-        ctx.lineTo(radius, 5);
+        ctx.moveTo(radius - 7, 25);
+        ctx.lineTo(radius + 7, 25);
+        ctx.lineTo(radius, 10);
+        ctx.closePath();
+        ctx.stroke();
+    
+        // Täytä nuoli valkoisella väriksi
+        ctx.fillStyle = '#ffffff'; // Valkea väri täyttöön
+        ctx.beginPath();
+        ctx.moveTo(radius - 7, 25);
+        ctx.lineTo(radius + 7, 25);
+        ctx.lineTo(radius, 10);
         ctx.closePath();
         ctx.fill();
     }
