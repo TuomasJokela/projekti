@@ -71,3 +71,12 @@ body, html {
     bottom: 10px;
     left: 10px;
 }
+#soundIconContainer {
+    display: inline-block; /* Asetetaan kaiutinkuvakkeen sisältö näkyväksi */
+    margin-right: 55px; /* Lisätään marginaali kaiutinkuvakkeen oikealle puolelle */
+}
+#toggleSoundButton {
+    position: absolute;
+    bottom: 10px;
+    left: 560px; /* Muutetaan left-arvoa */
+}
