@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arpakone - Login</title>
+    <style>
+        body {
+            background-image: url('login.png');
+            background-size: cover;
+        }
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        input {
+            display: block;
+            margin: 0 auto 10px;
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            display: block;
+            margin: 0 auto;
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Arpakone</h1>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            // Here you can add login functionality
+            // For simplicity, let's assume successful login
+            if (email === 'user@example.com' && password === 'password') {
+                window.location.href = 'index.html'; // Redirect to index.html
+            } else {
+                alert('Invalid email or password'); // Show error message
+            }
+        });
+    </script>
+</body>
+</html>

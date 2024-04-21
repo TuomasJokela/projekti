@@ -116,5 +116,34 @@ h2 {
     z-index: 9999; 
 }
 
-  
+.login-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#login-form {
+    display: inline-block;
+}
+
+#login-form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#login-form button {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#login-form button:hover {
+    background-color: #0056b3;
+}
+
   
