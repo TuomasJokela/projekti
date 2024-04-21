@@ -379,6 +379,16 @@ function englishText(text) {
             return 'Winner';
         case 'Ei voittoa':
             return 'No win';
+        case 'Vaihtoehto 1':
+            return 'Option 1';
+        case 'Vaihtoehto 2':
+            return 'Option 2';
+        case 'Vaihtoehto 3':
+            return 'Option 3';
+        case 'Vaihtoehto 4':
+            return 'Option 4';
+        case 'Vaihtoehto 5':
+            return 'Option 5';
         
 
       
@@ -464,11 +474,21 @@ function finnishText(text) {
         case 'Turkey':
             return 'Kalkkuna';
         case 'Spin the wheel!':
-                return 'Pyöritä Onnenpyörää!';
+            return 'Pyöritä Onnenpyörää!';
         case 'Winner':
-                return 'Voitto';
+            return 'Voitto';
         case 'No win':
-                return 'Ei voittoa';
+            return 'Ei voittoa';
+        case 'Option 1':
+            return 'Vaihtoehto 1';
+        case 'Option 2':
+            return 'Vaihtoehto 2';
+        case 'Option 3':
+            return 'Vaihtoehto 3';
+        case 'Option 4':
+            return 'Vaihtoehto 4';
+        case 'Option 5':
+            return 'Vaihtoehto 5';
         default:
             return text; // Jos ei ole määritelty käännöstä, palautetaan alkuperäinen teksti
     }
