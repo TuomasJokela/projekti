@@ -240,3 +240,236 @@ document.addEventListener('DOMContentLoaded', function() {
     updateOptionsList();
     drawWheel();
 });
+
+
+// Etsitään "In English" -napin id
+const languageButton = document.getElementById('languageButton');
+
+// Alustetaan muuttuja, joka kertoo nykyisen kielen
+let currentLanguage = 'finnish';
+
+// Lisätään klikkikuuntelija napille
+languageButton.addEventListener('click', () => {
+    // Jos nykyinen kieli on suomi, vaihdetaan englanniksi
+    if (currentLanguage === 'finnish') {
+        // Vaihdetaan kaikki tekstit englanniksi
+        changeLanguageToEnglish();
+        // Vaihdetaan napin teksti suomeksi
+        languageButton.textContent = 'Suomeksi';
+        // Päivitetään nykyinen kieli
+        currentLanguage = 'english';
+    } else { // Muulloin vaihdetaan suomeksi
+        // Vaihdetaan kaikki tekstit suomeksi
+        changeLanguageToFinish();
+        // Vaihdetaan napin teksti englanniksi
+        languageButton.textContent = 'In English';
+        // Päivitetään nykyinen kieli
+        currentLanguage = 'finnish';
+    }
+});
+
+// Funktio, joka vaihtaa kaikki tekstit englanniksi
+function changeLanguageToEnglish() {
+    // Haetaan kaikki sivun tekstejä sisältävät elementit
+    const elements = document.querySelectorAll('body *');
+
+    // Käydään läpi kaikki elementit
+    elements.forEach(element => {
+        // Tarkistetaan, onko elementin teksti
+        if (element.childNodes.length === 1 && element.firstChild.nodeType === Node.TEXT_NODE) {
+            // Vaihdetaan elementin teksti englanniksi
+            element.textContent = englishText(element.textContent.trim());
+        }
+    });
+}
+
+// Funktio, joka vaihtaa kaikki tekstit suomeksi
+function changeLanguageToFinish() {
+    // Haetaan kaikki sivun tekstejä sisältävät elementit
+    const elements = document.querySelectorAll('body *');
+
+    // Käydään läpi kaikki elementit
+    elements.forEach(element => {
+        // Tarkistetaan, onko elementin teksti
+        if (element.childNodes.length === 1 && element.firstChild.nodeType === Node.TEXT_NODE) {
+            // Vaihdetaan elementin teksti suomeksi
+            element.textContent = finnishText(element.textContent.trim());
+        }
+    });
+}
+
+// Yksinkertainen funktio, joka kääntää suomen englanniksi
+function englishText(text) {
+    switch (text) {
+        case 'Valikko':
+            return 'Menu';
+        case 'Oma tili':
+            return 'My Account';
+        case 'Valitse teema':
+            return 'Choose Theme';
+        case 'Valitse valmiita arpapohjia':
+            return 'Choose Pre-made Templates';
+        case 'Tee oma arpakone':
+            return 'Create Your Own Randomizer';
+        case 'Arpakone historia':
+            return 'Randomizer History';
+        case 'Musiikki Päälle':
+            return 'Turn Music On';
+        case 'Tekijät':
+            return 'Authors';
+        case 'Lisää uusi vaihtoehto':
+            return 'Add New Option';
+        case 'Lisää':
+            return 'Add';
+        case 'Poista kaikki vaihtoehdot':
+            return 'Remove All Options';
+        case 'Voitatko?':
+            return 'Do you win?';
+        case '1-5':
+            return '1-5';
+        case 'Autot':
+            return 'Cars';
+        case 'Ruoka':
+            return 'Food';
+        case 'Lihavalinnat':
+            return 'Meat Choices';
+        case 'McDonalds':
+            return 'McDonald\'s';
+        case 'Burger King':
+            return 'Burger King';
+        case 'Taco Bell':
+            return 'Taco Bell';
+        case 'KFC':
+            return 'KFC';
+        case 'Himaan syömään':
+            return 'Home Eating';
+        case 'Audi':
+            return 'Audi';
+        case 'Peugeot':
+            return 'Peugeot';
+        case 'BMW':
+            return 'BMW';
+        case 'Honda':
+            return 'Honda';
+        case 'Volkswagen':
+            return 'Volkswagen';
+        case 'Ensimmäinen':
+            return 'First';
+        case 'Toinen':
+            return 'Second';
+        case 'Kolmas':
+            return 'Third';
+        case 'Neljäs':
+            return 'Fourth';
+        case 'Viides':
+            return 'Fifth';
+        case 'Kana':
+            return 'Chicken';
+        case 'Nauta':
+            return 'Beef';
+        case 'Sika':
+            return 'Pork';
+        case 'Lammas':
+            return 'Lamb';
+        case 'Kalkkuna':
+            return 'Turkey';
+        case 'Pyöritä Onnenpyörää!':
+            return 'Spin the wheel!';
+        case 'Voitto':
+            return 'Winner';
+        case 'Ei voittoa':
+            return 'No win';
+        
+
+      
+
+        default:
+            return text; // Jos ei ole määritelty käännöstä, palautetaan alkuperäinen teksti
+    }
+}
+
+// funktio, joka kääntää englannista suomeksi
+function finnishText(text) {
+    switch (text) {
+        case 'Menu':
+            return 'Valikko';
+        case 'My Account':
+            return 'Oma tili';
+        case 'Choose Theme':
+            return 'Valitse teema';
+        case 'Choose Pre-made Templates':
+            return 'Valitse valmiita arpapohjia';
+        case 'Create Your Own Randomizer':
+            return 'Tee oma arpakone';
+        case 'Randomizer History':
+            return 'Arpakone historia';
+        case 'Turn Music On':
+            return 'Musiikki Päälle';
+        case 'Authors':
+            return 'Tekijät';
+        case 'Add New Option':
+            return 'Lisää uusi vaihtoehto';
+        case 'Add':
+            return 'Lisää';
+        case 'Remove All Options':
+            return 'Poista kaikki vaihtoehdot';
+        case 'Do you win?':
+            return 'Voitatko?';
+        case '1-5':
+            return '1-5';
+        case 'Cars':
+            return 'Autot';
+        case 'Food':
+            return 'Ruoka';
+        case 'Meat Choices':
+            return 'Lihavalinnat';
+        case 'McDonald\'s':
+            return 'McDonalds';
+        case 'Burger King':
+            return 'Burger King';
+        case 'Taco Bell':
+            return 'Taco Bell';
+        case 'KFC':
+            return 'KFC';
+        case 'Home Eating':
+            return 'Himaan syömään';
+        case 'Audi':
+            return 'Audi';
+        case 'Peugeot':
+            return 'Peugeot';
+        case 'BMW':
+            return 'BMW';
+        case 'Honda':
+            return 'Honda';
+        case 'Volkswagen':
+            return 'Volkswagen';
+        case 'First':
+            return 'Ensimmäinen';
+        case 'Second':
+            return 'Toinen';
+        case 'Third':
+            return 'Kolmas';
+        case 'Fourth':
+            return 'Neljäs';
+        case 'Fifth':
+            return 'Viides';
+        case 'Chicken':
+            return 'Kana';
+        case 'Beef':
+            return 'Nauta';
+        case 'Pork':
+            return 'Sika';
+        case 'Lamb':
+            return 'Lammas';
+        case 'Turkey':
+            return 'Kalkkuna';
+        case 'Spin the wheel!':
+                return 'Pyöritä Onnenpyörää!';
+        case 'Winner':
+                return 'Voitto';
+        case 'No win':
+                return 'Ei voittoa';
+        default:
+            return text; // Jos ei ole määritelty käännöstä, palautetaan alkuperäinen teksti
+    }
+}
