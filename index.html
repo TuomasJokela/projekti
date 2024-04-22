@@ -35,13 +35,23 @@
         <button id="menuButton">Valikko</button>
         <div class="menuContent">
             <ul>
-                <li><a href="#">Oma tili</a></li>
-                <li><a href="#">Valitse teema</a></li>
-                <li><a href="#">Valitse valmiita arpapohjia</a></li>
+                <li>
+                    <button id="chooseTemplateButton">Valitse valmiita arpapohjia</button>
+
+<ul class="premade-templates-menu" style="display: none;">
+    <li><button class="premade-template" data-options="Voitto, Ei voittoa, Voitto, Ei voittoa, Voitto">Voitatko?</button></li>
+    <li><button class="premade-template" data-options="Ensimmäinen, Toinen, Kolmas, Neljäs, Viides">1-5</button></li>
+    <li><button class="premade-template" data-options="Audi, Peugeot, BMW, Honda, Volkswagen">Autot</button></li>
+    <li><button class="premade-template" data-options="McDonalds, Burger King, Taco Bell, KFC, Himaan syömään">Ruoka</button></li>
+    <li><button class="premade-template" data-options="Kana, Nauta, Sika, Lammas, Kalkkuna">Lihavalinnat</button></li>
+</ul>
+
+                </li>
                 <li><a href="#">Tee oma arpakone</a></li>
                 <li><a href="#">Arpakone historia</a></li>
             </ul>
         </div>
+        
 
         <button id="toggleSoundButton" class="left-bottom">Musiikki Päälle</button>
         <div id="soundIconContainer"></div> <!-- Kaiutinkuvakkeen sijoituspaikka -->
@@ -57,15 +67,6 @@
         <button id="languageButton">In English</button>
     </div>
 
-    <!-- Lisätään valmiit arpapohjat -->
-    <div class="premade-templates">
-        <h2>Valmiita arpapohjia</h2>
-        <button class="premade-template" data-options="Voitto, Ei voittoa, Voitto, Ei voittoa, Voitto">Voitatko?</button>
-        <button class="premade-template" data-options="Ensimmäinen, Toinen, Kolmas, Neljäs, Viides">1-5</button>
-        <button class="premade-template" data-options="Audi, Peugeot, BMW, Honda, Volkswagen">Autot</button>
-        <button class="premade-template" data-options="McDonalds, Burger King, Taco Bell, KFC, Himaan syömään">Ruoka</button>
-        <button class="premade-template" data-options="Kana, Nauta, Sika, Lammas, Kalkkuna">Lihavalinnat</button>
-    </div>
 
     <script src="script.js"></script>
     <script>
