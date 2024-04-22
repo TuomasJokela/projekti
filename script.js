@@ -10,33 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const arc = Math.PI * 2 / options.length;
     let spinningSoundPlaying = false;
     let spinningSoundInterval;
+    const winners = [];
 
     // Äänitehosteet
     const spinSound = new Audio('spinsound.mp3');
     const resultSound = new Audio('winner.mp3');
     const spinningSound = new Audio('start.mp3');
     const backgroundMusic = new Audio('music.mp3');
-
-// Napin toiminta valitse valmiita arpapohjia -valikon näyttämiseen/piilottamiseen
-const chooseTemplateButton = document.getElementById('chooseTemplateButton');
-const premadeTemplatesMenu = document.querySelector('.premade-templates-menu');
-chooseTemplateButton.addEventListener('click', function() {
-    premadeTemplatesMenu.style.display = premadeTemplatesMenu.style.display === 'none' ? 'block' : 'none';
-});
-
-// Valmiiden arpapohjien napit
-const premadeButtons = document.querySelectorAll('.premade-template');
-premadeButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const optionsString = this.getAttribute('data-options');
-        options = optionsString.split(',').map(option => option.trim());
-        colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FF8333'].slice(0, options.length);
-        updateOptionsList();
-        drawWheel();
-    });
-});
-
-
 
     // Musiikki oletuksena pois päältä
     backgroundMusic.pause();
@@ -70,8 +50,6 @@ premadeButtons.forEach(button => {
     
     });
 
-
-    
     function drawArrow() {
         // Piirrä nuolen reuna
         ctx.strokeStyle = '#000000'; // Musta väri reunalle
@@ -168,7 +146,9 @@ premadeButtons.forEach(button => {
                 setTimeout(function() {
                     const index = Math.floor((360 - degrees % 360) / (360 / options.length));
                     const winnerText = `Voittaja on: ${options[index]}`;
+                    winners.push(options[index]);
                     console.log(winnerText);
+                    updateWinnersList(); // Päivitä voittajien lista
                     alert(winnerText);
                 }, 600);
             }
@@ -176,6 +156,13 @@ premadeButtons.forEach(button => {
 
         const spinTimeStart = Date.now();
         rotateWheel();
+    }
+
+    function updateWinnersList() {
+        const winnersListDiv = document.getElementById('winnersList');
+        winners.forEach(function(winner) {
+            winnersListDiv.innerHTML += `<p>${winner}</p>`;
+        });
     }
 
     function easeOut(t, b, c, d) {
@@ -263,6 +250,34 @@ premadeButtons.forEach(button => {
     updateOptionsList();
     drawWheel();
 });
+
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("openModalBtn");
+var span = document.getElementsByClassName("close")[0];
+
+
+btn.onclick = function() {
+modal.style.display = "block";
+}
+
+
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+
+window.onclick = function(event) {
+if (event.target == modal) {
+    modal.style.display = "none";
+}
+}
+
+
+document.getElementById("submitFeedbackBtn").onclick = function() {
+var feedback = document.getElementById("feedbackTextarea").value;
+alert("Kiitos palautteesta:\n" + feedback);
+modal.style.display = "none";
+}
 
 
 // Etsitään "In English" -napin id
