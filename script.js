@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const arc = Math.PI * 2 / options.length;
     let spinningSoundPlaying = false;
     let spinningSoundInterval;
+    const winners = [];
 
     // Äänitehosteet
     const spinSound = new Audio('spinsound.mp3');
@@ -168,7 +169,9 @@ premadeButtons.forEach(button => {
                 setTimeout(function() {
                     const index = Math.floor((360 - degrees % 360) / (360 / options.length));
                     const winnerText = `Voittaja on: ${options[index]}`;
+                    winners.push(options[index]);
                     console.log(winnerText);
+                    updateWinnersList(); // Päivitä voittajien lista
                     alert(winnerText);
                 }, 600);
             }
@@ -176,6 +179,13 @@ premadeButtons.forEach(button => {
 
         const spinTimeStart = Date.now();
         rotateWheel();
+    }
+
+    function updateWinnersList() {
+        const winnersListDiv = document.getElementById('winnersList');
+        winners.forEach(function(winner) {
+            winnersListDiv.innerHTML += `<p>${winner}</p>`;
+        });
     }
 
     function easeOut(t, b, c, d) {
@@ -263,6 +273,34 @@ premadeButtons.forEach(button => {
     updateOptionsList();
     drawWheel();
 });
+
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("openModalBtn");
+var span = document.getElementsByClassName("close")[0];
+
+
+btn.onclick = function() {
+modal.style.display = "block";
+}
+
+
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+
+window.onclick = function(event) {
+if (event.target == modal) {
+    modal.style.display = "none";
+}
+}
+
+
+document.getElementById("submitFeedbackBtn").onclick = function() {
+var feedback = document.getElementById("feedbackTextarea").value;
+alert("Kiitos palautteesta:\n" + feedback);
+modal.style.display = "none";
+}
 
 
 // Etsitään "In English" -napin id
