@@ -18,6 +18,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const spinningSound = new Audio('start.mp3');
     const backgroundMusic = new Audio('music.mp3');
 
+// Napin toiminta valitse valmiita arpapohjia -valikon näyttämiseen/piilottamiseen
+const chooseTemplateButton = document.getElementById('chooseTemplateButton');
+const premadeTemplatesMenu = document.querySelector('.premade-templates-menu');
+chooseTemplateButton.addEventListener('click', function() {
+    premadeTemplatesMenu.style.display = premadeTemplatesMenu.style.display === 'none' ? 'block' : 'none';
+});
+
+// Valmiiden arpapohjien napit
+const premadeButtons = document.querySelectorAll('.premade-template');
+premadeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const optionsString = this.getAttribute('data-options');
+        options = optionsString.split(',').map(option => option.trim());
+        colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FF8333'].slice(0, options.length);
+        updateOptionsList();
+        drawWheel();
+    });
+});
+
+
+
     // Musiikki oletuksena pois päältä
     backgroundMusic.pause();
 
@@ -50,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     });
 
+
+    
     function drawArrow() {
         // Piirrä nuolen reuna
         ctx.strokeStyle = '#000000'; // Musta väri reunalle
