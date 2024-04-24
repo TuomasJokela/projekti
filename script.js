@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const arc = Math.PI * 2 / options.length;
     let spinningSoundPlaying = false;
     let spinningSoundInterval;
-    const winners = [];
+    let winners = [];
 
     // Äänitehosteet
     const spinSound = new Audio('spinsound.mp3');
@@ -183,9 +183,15 @@ premadeButtons.forEach(button => {
 
     function updateWinnersList() {
         const winnersListDiv = document.getElementById('winnersList');
+        winnersListDiv.innerHTML = "";
+        
         winners.forEach(function(winner) {
             winnersListDiv.innerHTML += `<p>${winner}</p>`;
         });
+    }
+
+    function onSpin(winner) {
+        winners.push(winner);
     }
 
     function easeOut(t, b, c, d) {
@@ -293,6 +299,7 @@ premadeButtons.forEach(button => {
 
     updateOptionsList();
     drawWheel();
+    updateWinnersList();
 });
 
 var modal = document.getElementById("myModal");
