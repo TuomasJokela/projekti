@@ -9,8 +9,6 @@ body, html {
     background-size: cover;
     background-attachment: fixed; /* Lisätään tämä varmistaaksemme, että tausta pysyy paikallaan vierityksen yhteydessä */
 }
-    
-
 
 .wrapper {
     text-align: center;
@@ -58,10 +56,16 @@ body, html {
 }
 
 /* tyyli tekijöiden napille */
-#authorsButton {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+#creditsButton {
+    position: fixed;  /* Kiinnittää napin tiettyyn kohtaan ikkunassa */
+    right: 10px;      /* Asettaa napin 10 pikseliä oikeasta reunasta */
+    bottom: 10px;     /* Asettaa napin 10 pikseliä alareunasta */
+    padding: 10px 20px; /* Sisäinen täyte napille */
+    background-color: #007BFF; /* Taustaväri */
+    color: white;     /* Tekstin väri */
+    border: none;     /* Ei reunaa */
+    border-radius: 5px; /* Pyöristetyt kulmat */
+    cursor: pointer;  /* Kursori muuttuu kädeksi napin päällä */
 }
 
 /* tyyli valikolle napille */
