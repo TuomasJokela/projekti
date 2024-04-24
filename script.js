@@ -199,7 +199,28 @@ premadeButtons.forEach(button => {
         spinSpeed = parseInt(this.value);
     });
 
-    
+    // Haetaan modaali ja sulje-nappi
+    var creditsModal = document.getElementById("creditsModal");
+    var closeBtn = creditsModal.querySelector('.close');
+    var creditsBtn = document.getElementById("creditsButton");
+
+    // Kun käyttäjä klikkaa "Tekijät"-nappia, näytetään modaali
+    creditsBtn.onclick = function() {
+    creditsModal.style.display = "block";
+    }
+
+    // Kun käyttäjä klikkaa sulje-nappia (×), suljetaan modaali
+    closeBtn.onclick = function() {
+    creditsModal.style.display = "none";
+    }
+
+    // Kun käyttäjä klikkaa modaalin ulkopuolelle, suljetaan modaali
+    window.onclick = function(event) {
+        if (event.target == creditsModal) {
+            creditsModal.style.display = "none";
+        }
+    }
+
 
     document.getElementById('spin').addEventListener('click', spin);
 
