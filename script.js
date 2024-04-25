@@ -601,3 +601,8 @@ function finnishText(text) {
 document.getElementById("historyButton").addEventListener("click", function() {
     window.location.href = "historia.html";
 });
+
+document.getElementById("historyDelete").addEventListener("click", function() {
+    localStorage.clear();
+});
+
