@@ -21,9 +21,12 @@
             background-color: #f2f2f2;
         }
     </style>
+
+
 </head>
 <body>
     <h2>Voittajat</h2>
+    <button id="backButton">Takaisin</button>
     <table>
         <thead>
             <tr>
@@ -62,5 +65,10 @@
         });
     </script>
     <script src="script.js"></script>
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+    </script>
 </body>
 </html>
