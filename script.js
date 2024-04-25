@@ -492,6 +492,13 @@ function englishText(text) {
             return 'Option 4';
         case 'Vaihtoehto 5':
             return 'Option 5';
+        case 'Anna palautetta':
+            return 'Give feedback';
+        case 'Aiemmat voittajat:':
+            return 'Previous winners:';
+        case 'Poista historia':
+            return 'Remove history';
+
         
 
       
@@ -592,6 +599,12 @@ function finnishText(text) {
             return 'Vaihtoehto 4';
         case 'Option 5':
             return 'Vaihtoehto 5';
+        case 'Give feedback':
+             return 'Anna palautetta';
+        case 'Previous winners:':
+             return 'Aiemmat voittajat:';
+        case 'Remove history':
+            return 'Poista historia';
         default:
             return text; // Jos ei ole määritelty käännöstä, palautetaan alkuperäinen teksti
     }
