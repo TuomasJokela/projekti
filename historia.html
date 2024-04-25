@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voittajat</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Voittajat</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Voittaja</th>
+            </tr>
+        </thead>
+        <tbody id="winnersTableBody">
+            <!-- Tähän tulee voittajien tiedot -->
+        </tbody>
+    </table>
+
+    <script>
+        // Funktio hakee voittajat LocalStoragesta
+        function getWinnersFromLocal() {
+            const winnersData = localStorage.getItem('winners');
+            if (winnersData) {
+                return JSON.parse(winnersData);
+            } else {
+                return []; // Palautetaan tyhjä taulukko, jos ei ole tallennettuja voittajia
+            }
+        }
+
+        // Haetaan voittajat LocalStoragesta
+        const winners = getWinnersFromLocal();
+        const winnersTableBody = document.getElementById('winnersTableBody');
+
+        // Lisätään voittajat taulukkoon
+        winners.forEach((winner, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${winner}</td>
+            `;
+            winnersTableBody.appendChild(row);
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

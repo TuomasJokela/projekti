@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const arc = Math.PI * 2 / options.length;
     let spinningSoundPlaying = false;
     let spinningSoundInterval;
-    let winners = [];
+    let winners = getWinnersFromLocal();
 
     // Äänitehosteet
     const spinSound = new Audio('spinsound.mp3');
@@ -184,10 +184,24 @@ premadeButtons.forEach(button => {
     function updateWinnersList() {
         const winnersListDiv = document.getElementById('winnersList');
         winnersListDiv.innerHTML = "";
+
+        // Tallennetaan voittajat LocalStorageen
+        
+        localStorage.setItem('winners', JSON.stringify(winners));
         
         winners.forEach(function(winner) {
             winnersListDiv.innerHTML += `<p>${winner}</p>`;
         });
+    }
+
+    // Lue voittajat LocalStoragesta
+    function getWinnersFromLocal() {
+        const winnersData = localStorage.getItem('winners');
+        if (winnersData) {
+            return JSON.parse(winnersData);
+        } else {
+            return []; // Palautetaan tyhjä taulukko, jos ei ole tallennettuja voittajia
+        }
     }
 
     function onSpin(winner) {
@@ -582,3 +596,8 @@ function finnishText(text) {
             return text; // Jos ei ole määritelty käännöstä, palautetaan alkuperäinen teksti
     }
 }
+
+
+document.getElementById("historyButton").addEventListener("click", function() {
+    window.location.href = "historia.html";
+});
